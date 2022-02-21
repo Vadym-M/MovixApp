@@ -2,19 +2,17 @@ package com.vadymex.movixapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.vadymex.movixapp.adapter.MovieAdapter
+import androidx.fragment.app.Fragment
 import com.vadymex.movixapp.databinding.ActivityMainBinding
-import com.vadymex.movixapp.viewmodel.MovieViewModel
+import com.vadymex.movixapp.fragments.FavoriteFragment
+import com.vadymex.movixapp.fragments.HomeFragment
+import com.vadymex.movixapp.fragments.SearchFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private  val viewModel: MovieViewModel by viewModels()
-    private lateinit var movieAdapter: MovieAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,20 +20,47 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
-        setUpRecyclerView()
+//        setUpRecyclerView()
+        setUpNavDrawer()
+        if(savedInstanceState == null){
+            openFragment(HomeFragment())
+        }
+
 
     }
 
-    private fun setUpRecyclerView() {
-        movieAdapter = MovieAdapter()
-        binding.mainRecyclerView.apply {
-            adapter = movieAdapter
-            layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
-            setHasFixedSize(true)
-        }
+    private fun setUpNavDrawer() {
+        binding.apply {
+            topAppBar.setNavigationOnClickListener {
+                drawerLayout.open()
+            }
 
-        viewModel.response.observe(this){ movies ->
-            movieAdapter.movies = movies
+            navView.setNavigationItemSelectedListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.searchItem -> {
+                        openFragment(SearchFragment())
+                        true
+                    }
+                    R.id.favoriteItem -> {
+                        openFragment(FavoriteFragment())
+                        true
+                    }
+                    R.id.homeItem -> {
+                        openFragment(HomeFragment())
+                        true
+                    }
+                    else -> {
+                        true
+                    }
+                }
+            }
         }
     }
+
+    private fun openFragment(fragment: Fragment){
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer, fragment)
+            .commit()
+    }
+
 }
