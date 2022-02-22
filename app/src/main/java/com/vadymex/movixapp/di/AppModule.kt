@@ -1,6 +1,10 @@
 package com.vadymex.movixapp.di
 
 import com.vadymex.movixapp.data.remote.ApiService
+import com.vadymex.movixapp.data.repository.MovieRepositoryImpl
+import com.vadymex.movixapp.data.repository.PeopleRepositoryImpl
+import com.vadymex.movixapp.domain.repository.MovieRepository
+import com.vadymex.movixapp.domain.repository.PeopleRepository
 import com.vadymex.movixapp.presentation.utils.Constants.Companion.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -25,4 +29,15 @@ object AppModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideMovieRepository(api: ApiService): MovieRepository{
+        return MovieRepositoryImpl(api)
+    }
+    @Provides
+    @Singleton
+    fun providePeopleRepository(api: ApiService): PeopleRepository {
+        return PeopleRepositoryImpl(api)
+    }
 }

@@ -13,13 +13,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <TextView
-            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:textSize="18sp"
-            android:text="Movies"/>
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-black"
+            android:text="Movies"
+            android:textSize="24sp" />
         <com.google.android.material.button.MaterialButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -30,19 +32,21 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mainRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="325dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <TextView
-            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:textSize="18sp"
-            android:text="Comedy"/>
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-black"
+            android:text="People"
+            android:textSize="24sp" />
         <com.google.android.material.button.MaterialButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -52,7 +56,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/comedyRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="325dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"

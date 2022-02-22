@@ -15,9 +15,9 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: HomeViewModel by viewModels()
-    private lateinit var homeAdapter: HomeAdapter
-    private lateinit var comedyAdapter: HomeAdapter
-    private lateinit var actionAdapter: HomeAdapter
+    private lateinit var homeMovieAdapter: HomeMovieAdapter
+    private lateinit var homePeopleAdapter: HomePeopleAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,39 +33,28 @@ class HomeFragment : Fragment() {
     }
 
     private fun setUpRecyclerViews() {
-        homeAdapter = HomeAdapter()
-        actionAdapter = HomeAdapter()
-        comedyAdapter = HomeAdapter()
+        homeMovieAdapter = HomeMovieAdapter()
+        homePeopleAdapter = HomePeopleAdapter()
+
         binding.mainRecyclerView.apply {
 
-            adapter = homeAdapter
+            adapter = homeMovieAdapter
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             setHasFixedSize(true)
             viewModel.movies.observe(viewLifecycleOwner) { movies ->
-                homeAdapter.movies = movies
-            }
-        }
-
-        binding.actionRecyclerView.apply {
-
-            adapter = actionAdapter
-            layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-            setHasFixedSize(true)
-            viewModel.moviesAction.observe(viewLifecycleOwner) { movies ->
-                actionAdapter.movies = movies
+                homeMovieAdapter.movies = movies
             }
         }
 
         binding.comedyRecyclerView.apply {
 
-            adapter = comedyAdapter
+            adapter = homePeopleAdapter
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             setHasFixedSize(true)
-            viewModel.moviesComedy.observe(viewLifecycleOwner) { movies ->
-                comedyAdapter.movies = movies
+            viewModel.people.observe(viewLifecycleOwner) { people ->
+                homePeopleAdapter.people = people
             }
         }
     }
