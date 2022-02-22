@@ -1,4 +1,4 @@
-package com.vadymex.movixapp.fragments
+package com.vadymex.movixapp.presentation.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,19 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.vadymex.movixapp.adapter.MovieAdapter
 import com.vadymex.movixapp.databinding.FragmentHomeBinding
-import com.vadymex.movixapp.viewmodel.MovieViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
-    private val viewModel: MovieViewModel by viewModels()
-    private lateinit var movieAdapter: MovieAdapter
-    private lateinit var comedyAdapter: MovieAdapter
-    private lateinit var actionAdapter: MovieAdapter
+    private val viewModel: HomeViewModel by viewModels()
+    private lateinit var homeAdapter: HomeAdapter
+    private lateinit var comedyAdapter: HomeAdapter
+    private lateinit var actionAdapter: HomeAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,17 +33,17 @@ class HomeFragment : Fragment() {
     }
 
     private fun setUpRecyclerViews() {
-        movieAdapter = MovieAdapter()
-        actionAdapter = MovieAdapter()
-        comedyAdapter = MovieAdapter()
+        homeAdapter = HomeAdapter()
+        actionAdapter = HomeAdapter()
+        comedyAdapter = HomeAdapter()
         binding.mainRecyclerView.apply {
 
-            adapter = movieAdapter
+            adapter = homeAdapter
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             setHasFixedSize(true)
             viewModel.movies.observe(viewLifecycleOwner) { movies ->
-                movieAdapter.movies = movies
+                homeAdapter.movies = movies
             }
         }
 

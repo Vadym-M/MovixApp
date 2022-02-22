@@ -1,4 +1,4 @@
-package com.vadymex.movixapp.model
+package com.vadymex.movixapp.domain.model
 
 data class Movie(
     val averageRuntime: Int,

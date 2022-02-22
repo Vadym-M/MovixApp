@@ -1,14 +1,13 @@
 package com.vadymex.movixapp.di
 
-import com.vadymex.movixapp.api.ApiService
-import com.vadymex.movixapp.utils.Constants.Companion.BASE_URL
+import com.vadymex.movixapp.data.remote.ApiService
+import com.vadymex.movixapp.presentation.utils.Constants.Companion.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 import javax.inject.Singleton
 
 @Module

@@ -1,3 +1,3 @@
-package com.vadymex.movixapp.model
+package com.vadymex.movixapp.domain.model
 
 class MoviesResponse : ArrayList<Movie>()

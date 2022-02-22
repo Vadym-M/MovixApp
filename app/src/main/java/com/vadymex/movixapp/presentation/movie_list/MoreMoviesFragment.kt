@@ -1,4 +1,4 @@
-package com.vadymex.movixapp.fragments
+package com.vadymex.movixapp.presentation.movie_list
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

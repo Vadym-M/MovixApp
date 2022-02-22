@@ -1,4 +1,4 @@
-package com.vadymex.movixapp.utils
+package com.vadymex.movixapp.presentation.utils
 
 class Constants {
     companion object {

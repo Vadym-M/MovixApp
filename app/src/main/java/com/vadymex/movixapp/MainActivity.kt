@@ -4,9 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.vadymex.movixapp.databinding.ActivityMainBinding
-import com.vadymex.movixapp.fragments.FavoriteFragment
-import com.vadymex.movixapp.fragments.HomeFragment
-import com.vadymex.movixapp.fragments.SearchFragment
+import com.vadymex.movixapp.presentation.favorite.FavoriteFragment
+import com.vadymex.movixapp.presentation.home.HomeFragment
+import com.vadymex.movixapp.presentation.search.SearchFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

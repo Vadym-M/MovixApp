@@ -1,19 +1,19 @@
-package com.vadymex.movixapp.viewmodel
+package com.vadymex.movixapp.presentation.home
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vadymex.movixapp.model.Movie
-import com.vadymex.movixapp.repository.MovieRepository
+import com.vadymex.movixapp.domain.model.Movie
+import com.vadymex.movixapp.data.repository.MovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MovieViewModel @Inject constructor(private val repository: MovieRepository) : ViewModel() {
+class HomeViewModel @Inject constructor(private val repository: MovieRepository) : ViewModel() {
 
     private val _movies = MutableLiveData<List<Movie>>()
     val movies :LiveData<List<Movie>>

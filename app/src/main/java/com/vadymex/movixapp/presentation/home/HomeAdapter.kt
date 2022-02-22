@@ -1,4 +1,4 @@
-package com.vadymex.movixapp.adapter
+package com.vadymex.movixapp.presentation.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.vadymex.movixapp.databinding.ItemMovieBinding
-import com.vadymex.movixapp.model.Movie
+import com.vadymex.movixapp.domain.model.Movie
 
-class MovieAdapter: RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
+class HomeAdapter: RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
 
     inner class ViewHolder(val binding: ItemMovieBinding): RecyclerView.ViewHolder(binding.root)
 
