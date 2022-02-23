@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.vadymex.movixapp.databinding.ItemMovieBinding
 import com.vadymex.movixapp.databinding.ItemNewestMoviesBinding
 import com.vadymex.movixapp.domain.model.movie.Movie
 
@@ -40,6 +39,7 @@ class HomeNewestMovieAdapter: RecyclerView.Adapter<HomeNewestMovieAdapter.ViewHo
         val currentMovie = movies[position]
         holder.binding.apply {
             newestMovieTitle.text = currentMovie.name
+            newestSummaryMovie.text = currentMovie.summary
 
             Glide.with(holder.binding.root)
                 .load(currentMovie.image.original)

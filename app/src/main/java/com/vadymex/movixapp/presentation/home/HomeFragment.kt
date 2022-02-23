@@ -80,6 +80,7 @@ class HomeFragment : Fragment() {
                 .load(movie.image.original)
                 .into(binding.randomMovieImage)
             binding.randomMovieTitle.text = movie.name
+            binding.randomSummaryMovie.text = movie.summary
         }
 
 

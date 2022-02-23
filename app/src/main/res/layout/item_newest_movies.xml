@@ -19,12 +19,28 @@
             android:scaleType="center"
             app:srcCompat="@drawable/ic_launcher_foreground" />
 
-        <TextView
-            android:id="@+id/newestMovieTitle"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:fontFamily="sans-serif-black"
-            android:text="TextView" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/newestMovieTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:textColor="@color/black"
+                android:fontFamily="sans-serif-black"
+                android:text="TextView" />
+            <TextView
+                android:id="@+id/newestSummaryMovie"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
+                android:text="Description"/>
+        </LinearLayout>
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>

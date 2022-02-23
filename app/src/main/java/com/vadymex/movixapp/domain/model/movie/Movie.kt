@@ -12,7 +12,7 @@ data class Movie(
     val premiered: String,
     val runtime: Int,
     val status: String,
-    val summary: String,
+    var summary: String,
     val type: String,
     val updated: Int,
     val url: String,
