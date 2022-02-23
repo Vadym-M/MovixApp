@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.vadymex.movixapp.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -17,6 +18,7 @@ class HomeFragment : Fragment() {
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var homeMovieAdapter: HomeMovieAdapter
     private lateinit var homePeopleAdapter: HomePeopleAdapter
+    private lateinit var newestMovieAdapter: HomeNewestMovieAdapter
 
 
     override fun onCreateView(
@@ -35,6 +37,7 @@ class HomeFragment : Fragment() {
     private fun setUpRecyclerViews() {
         homeMovieAdapter = HomeMovieAdapter()
         homePeopleAdapter = HomePeopleAdapter()
+        newestMovieAdapter = HomeNewestMovieAdapter()
 
         binding.mainRecyclerView.apply {
 
@@ -47,7 +50,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        binding.comedyRecyclerView.apply {
+        binding.peopleRecyclerView.apply {
 
             adapter = homePeopleAdapter
             layoutManager =
@@ -57,6 +60,29 @@ class HomeFragment : Fragment() {
                 homePeopleAdapter.people = people
             }
         }
+
+        binding.newMoviesRecyclerView.apply {
+            val lm = object : LinearLayoutManager(requireContext()){
+                override fun canScrollVertically(): Boolean {
+                    return false
+                }
+            }
+            adapter = newestMovieAdapter
+            layoutManager = lm
+            setHasFixedSize(true)
+            viewModel.newestMovies.observe(viewLifecycleOwner) { movies ->
+                newestMovieAdapter.movies = movies
+            }
+        }
+
+           viewModel.randomMovie.observe(viewLifecycleOwner){ movie ->
+               Glide.with(requireActivity())
+                   .load(movie.image.original)
+                   .into(binding.randomMovieImage)
+               binding.randomMovieTitle.text = movie.name
+           }
+
+
     }
 
 }

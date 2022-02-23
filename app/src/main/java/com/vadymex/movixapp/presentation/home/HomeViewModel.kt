@@ -1,5 +1,6 @@
 package com.vadymex.movixapp.presentation.home
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -22,6 +23,12 @@ class HomeViewModel @Inject constructor(
 
     private val _movies = MutableLiveData<List<Movie>>()
     val movies :LiveData<List<Movie>> = _movies
+
+    private val _randomMovie = MutableLiveData<Movie>()
+    val randomMovie :LiveData<Movie> = _randomMovie
+
+    private val _newestMovies = MutableLiveData<List<Movie>>()
+    val newestMovies :LiveData<List<Movie>> = _newestMovies
 
     private val _people = MutableLiveData<List<Person>>()
     val people :LiveData<List<Person>> = _people
@@ -47,6 +54,8 @@ class HomeViewModel @Inject constructor(
             when(result){
                 is Resource.Success -> {
                     listMovies = result.data ?: emptyList()
+                    getNewestMovies(listMovies)
+                    getRandomMovie(listMovies)
                     val shortList = listMovies.shuffled().slice(0..9)
                     _movies.postValue(shortList)
                 }
@@ -67,6 +76,15 @@ class HomeViewModel @Inject constructor(
                 is Resource.Loading -> {_progressBarVisible.postValue(true)}
             }
         }.launchIn(viewModelScope)
+    }
+
+    private fun getNewestMovies(movies: List<Movie>){
+        val newList = movies.sortedBy { it.weight }.reversed().slice(0..4)
+        _newestMovies.postValue(newList)
+    }
+
+    private fun getRandomMovie(movies: List<Movie>){
+        _randomMovie.postValue(movies.random())
     }
 
 
