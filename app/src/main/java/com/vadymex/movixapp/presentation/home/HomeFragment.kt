@@ -62,7 +62,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.newMoviesRecyclerView.apply {
-            val lm = object : LinearLayoutManager(requireContext()){
+            val lm = object : LinearLayoutManager(requireContext()) {
                 override fun canScrollVertically(): Boolean {
                     return false
                 }
@@ -75,12 +75,12 @@ class HomeFragment : Fragment() {
             }
         }
 
-           viewModel.randomMovie.observe(viewLifecycleOwner){ movie ->
-               Glide.with(requireActivity())
-                   .load(movie.image.original)
-                   .into(binding.randomMovieImage)
-               binding.randomMovieTitle.text = movie.name
-           }
+        viewModel.randomMovie.observe(viewLifecycleOwner) { movie ->
+            Glide.with(requireActivity())
+                .load(movie.image.original)
+                .into(binding.randomMovieImage)
+            binding.randomMovieTitle.text = movie.name
+        }
 
 
     }
