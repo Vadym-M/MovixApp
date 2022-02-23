@@ -12,9 +12,14 @@ import com.vadymex.movixapp.domain.model.movie.Movie
 import com.vadymex.movixapp.domain.model.people.Person
 
 class HomePeopleAdapter: RecyclerView.Adapter<HomePeopleAdapter.ViewHolder>() {
-
-    inner class ViewHolder(val binding: ItemPersonBinding): RecyclerView.ViewHolder(binding.root)
-
+    var onItemClick: ((String) -> Unit)? = null
+    inner class ViewHolder(val binding: ItemPersonBinding): RecyclerView.ViewHolder(binding.root) {
+        init {
+            binding.root.setOnClickListener {
+                onItemClick?.invoke(people[adapterPosition].id.toString())
+            }
+        }
+    }
     private val diffcalback = object : DiffUtil.ItemCallback<Person>(){
         override fun areItemsTheSame(oldItem: Person, newItem: Person): Boolean {
             return oldItem.id == newItem.id

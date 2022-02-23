@@ -9,6 +9,8 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.vadymex.movixapp.databinding.FragmentHomeBinding
+import com.vadymex.movixapp.presentation.utils.OnItemShow
+import com.vadymex.movixapp.presentation.utils.navigator
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -48,6 +50,10 @@ class HomeFragment : Fragment() {
             viewModel.movies.observe(viewLifecycleOwner) { movies ->
                 homeMovieAdapter.movies = movies
             }
+
+            homeMovieAdapter.onItemClick = {
+                navigator().onItemClicked(OnItemShow.ShowMovie(it))
+            }
         }
 
         binding.peopleRecyclerView.apply {
@@ -58,6 +64,10 @@ class HomeFragment : Fragment() {
             setHasFixedSize(true)
             viewModel.people.observe(viewLifecycleOwner) { people ->
                 homePeopleAdapter.people = people
+            }
+
+            homeMovieAdapter.onItemClick = {
+                navigator().onItemClicked(OnItemShow.ShowPerson(it))
             }
         }
 
@@ -72,6 +82,10 @@ class HomeFragment : Fragment() {
             setHasFixedSize(true)
             viewModel.newestMovies.observe(viewLifecycleOwner) { movies ->
                 newestMovieAdapter.movies = movies
+            }
+
+            homeMovieAdapter.onItemClick = {
+                navigator().onItemClicked(OnItemShow.ShowMovie(it))
             }
         }
 

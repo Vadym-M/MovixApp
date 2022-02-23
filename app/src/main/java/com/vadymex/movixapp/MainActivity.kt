@@ -7,10 +7,12 @@ import com.vadymex.movixapp.databinding.ActivityMainBinding
 import com.vadymex.movixapp.presentation.favorite.FavoriteFragment
 import com.vadymex.movixapp.presentation.home.HomeFragment
 import com.vadymex.movixapp.presentation.search.SearchFragment
+import com.vadymex.movixapp.presentation.utils.Navigator
+import com.vadymex.movixapp.presentation.utils.OnItemShow
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), Navigator {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -20,7 +22,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
-//        setUpRecyclerView()
         setUpNavDrawer()
         if(savedInstanceState == null){
             openFragment(HomeFragment())
@@ -61,6 +62,15 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, fragment)
             .commit()
+    }
+
+    override fun onItemClicked(onItemShow: OnItemShow) {
+        when(onItemShow){
+            is OnItemShow.ShowMovie ->{}
+            is OnItemShow.ShowMovies ->{}
+            is OnItemShow.ShowPeople ->{}
+            is OnItemShow.ShowPerson ->{}
+        }
     }
 
 }
