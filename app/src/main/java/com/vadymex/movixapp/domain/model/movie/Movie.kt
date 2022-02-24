@@ -1,11 +1,13 @@
 package com.vadymex.movixapp.domain.model.movie
 
+import com.vadymex.movixapp.domain.model.Image
+
 data class Movie(
     val averageRuntime: Int,
     val ended: String,
     val genres: List<String>,
     val id: Int,
-    val image: ImageMovie,
+    val image: Image,
     val language: String,
     val name: String,
     val officialSite: String,

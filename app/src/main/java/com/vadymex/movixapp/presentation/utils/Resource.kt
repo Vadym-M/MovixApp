@@ -5,3 +5,7 @@ sealed class Resource<T>(val data: T?, val msg: String? = null) {
     class Error<T>(msg: String?, data: T? = null):Resource<T>(data, msg)
     class Loading<T>(data: T? = null) : Resource<T>(data)
 }
+
+fun String.removeHTMLTags():String{
+   return this.replace("<.*?>".toRegex(), "")
+}
